@@ -13,18 +13,50 @@
       <h1>Space Explorer</h1>
     </header>
 
-    <div class="filters">
-      <input type="date" id="startDate" />
-      <input type="date" id="endDate" />
-      <button>Get Space Images</button>
-    </div>
+    <main>
+      <section class="filters" aria-label="Choose a date range">
+        <label>
+          <span>Start date</span>
+          <input type="date" id="startDate" />
+        </label>
+        <label>
+          <span>End date</span>
+          <input type="date" id="endDate" />
+        </label>
+        <button id="getImagesButton" type="button">Get Space Images</button>
+      </section>
 
-    <div id="gallery" class="gallery">
-      <div class="placeholder">
-        <div class="placeholder-icon">🔭</div>
-        <p>Select a date range and click "Get Space Images" to explore the cosmos!</p>
+      <section class="fact-card" aria-labelledby="factTitle">
+        <h2 id="factTitle">Did You Know?</h2>
+        <p id="spaceFact"></p>
+      </section>
+
+      <section id="gallery" class="gallery" aria-live="polite" aria-busy="true">
+        <div class="loading-state">
+          <span class="loading-spinner" aria-hidden="true"></span>
+          <p>Loading space photos...</p>
+        </div>
+      </section>
+
+      <nav id="pagination" class="pagination" aria-label="Gallery pages" hidden>
+        <button id="previousPage" type="button">Previous</button>
+        <span id="pageStatus" aria-live="polite"></span>
+        <button id="nextPage" type="button">Next</button>
+      </nav>
+    </main>
+
+    <dialog id="imageModal" class="image-modal" aria-labelledby="modalTitle">
+      <button id="closeModal" class="modal-close" type="button" aria-label="Close details">&times;</button>
+      <div id="modalMedia" class="modal-media"></div>
+      <div class="modal-details">
+        <p id="modalDate" class="modal-date"></p>
+        <h2 id="modalTitle"></h2>
+        <p id="modalExplanation" class="modal-explanation"></p>
+        <a id="modalVideoLink" class="video-link" target="_blank" rel="noopener noreferrer" hidden>
+          Open this video on NASA's media site
+        </a>
       </div>
-    </div>
+    </dialog>
   </div>
 
   <script src="js/dateRange.js"></script>
